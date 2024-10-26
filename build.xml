@@ -1,0 +1,62 @@
+<project name="legacy-financial-app" default="dist" basedir=".">
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="web.dir" value="web"/>
+    <property name="lib.dir" value="lib"/>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}/classes">
+            <classpath>
+                <fileset dir="lib">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="dist" depends="clean,compile">
+        <mkdir dir="${dist.dir}"/>
+        <mkdir dir="${build.dir}/webapp"/>
+        <mkdir dir="${build.dir}/webapp/WEB-INF/tld"/>
+        <mkdir dir="${build.dir}/temp"/>
+        
+        <!-- Extract TLD files from struts-taglib JAR -->
+        <unzip src="${lib.dir}/struts-taglib-1.3.10.jar" dest="${build.dir}/temp">
+            <patternset>
+                <include name="META-INF/tld/*.tld"/>
+            </patternset>
+        </unzip>
+        <copy todir="${build.dir}/webapp/WEB-INF/tld">
+            <fileset dir="${build.dir}/temp/META-INF/tld" includes="*.tld"/>
+        </copy>
+        
+        <copy todir="${build.dir}/webapp">
+            <fileset dir="${web.dir}"/>
+        </copy>
+        <copy todir="${build.dir}/webapp/WEB-INF/classes">
+            <fileset dir="${classes.dir}"/>
+        </copy>
+        <copy todir="${build.dir}/webapp/WEB-INF/lib">
+            <fileset dir="${lib.dir}">
+                <include name="**/*.jar"/>
+            </fileset>
+        </copy>
+        <war destfile="${dist.dir}/legacy-financial-app.war" webxml="${web.dir}/WEB-INF/web.xml">
+            <fileset dir="${build.dir}/webapp"/>
+        </war>
+    </target>
+</project>
