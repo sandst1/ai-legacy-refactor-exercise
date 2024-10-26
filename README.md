@@ -16,3 +16,15 @@ Build and run the application:
 ```bash
 docker-compose up --build
 ```
+
+When DB and the app are up, go to `http://localhost:8080/legacy-financial-app` in your browser.
+
+## Screenshots
+
+![alt text](screenshot.png)
+
+![alt text](screenshot2.png)
+
+![alt text](screenshot3.png)
+
+![alt text](screenshot4.png)
