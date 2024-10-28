@@ -27,6 +27,7 @@
       <a href="customerAction.do">View Customers</a>
       <a href="accountAction.do">View Accounts</a>
       <a href="transactionAction.do">View Transactions</a>
+      <a href="reportAction.do">View Reports</a>
     </div>
 
     <div>

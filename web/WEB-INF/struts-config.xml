@@ -100,6 +100,13 @@
             <forward name="success" path="/jsp/editTransaction.jsp"/>
             <forward name="save" path="/transactionAction.do"/>
         </action>
+
+        <action path="/reportAction" 
+                type="com.legacy.action.ReportAction"
+                scope="request"
+                validate="false">
+            <forward name="success" path="/jsp/reports.jsp"/>
+        </action>
     </action-mappings>
 
     <message-resources parameter="com.legacy.ApplicationResources"/>
