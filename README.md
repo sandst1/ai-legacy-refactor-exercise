@@ -21,10 +21,12 @@ When DB and the app are up, go to `http://localhost:8080/legacy-financial-app` i
 
 ## Screenshots
 
-![alt text](screenshot.png)
+![alt text](screenshot1.png)
 
 ![alt text](screenshot2.png)
 
 ![alt text](screenshot3.png)
 
 ![alt text](screenshot4.png)
+
+![alt text](screenshot5.png)
